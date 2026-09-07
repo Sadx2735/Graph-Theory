@@ -7,8 +7,9 @@
 
 // Construction of Graph.
 namespace BFSx1;
-class Program {
-   static void Main () {
+
+class ProgramxBFs1 {
+   static void RunMe () {
       int n = 7;
       GraphStructure Gs = new GraphStructure (n);
       Gs.AddNode (1, 0);
@@ -29,16 +30,16 @@ class GraphStructure {
    public GraphStructure (int N) {
       Map = new (); this.N = N;
       for (int i = 0; i < N; i++) {
-         Map.Add(new List<int> ());
+         Map.Add (new List<int> ());
       }
    }
-   public void AddNode(int from, int to,bool BothDir=true) {
+   public void AddNode (int from, int to, bool BothDir = true) {
       Map[from].Add (to);
       if (BothDir) Map[to].Add (from);
    }
    // Normal Printing..
    public void PrintAdjList () {
-      for(int i=0;i<N;i++) {
+      for (int i = 0; i < N; i++) {
          Console.Write ($"{i} => ");
          foreach (var val in Map[i]) {
             Console.Write ($"{val},");
@@ -47,7 +48,7 @@ class GraphStructure {
       }
    }
    // Print Level Wise
-   public void PrintBwise() {
+   public void PrintBwise () {
       Queue<int> Q = [];
       bool[] Visited = new bool[N];
       Q.Enqueue (1); Visited[1] = true;
