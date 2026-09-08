@@ -1,4 +1,5 @@
 ﻿namespace Grapheex5;
+
 public class SolutionMakex1 {
    public bool ContainsCycle (char[][] grid) {
       bool[][] visited = new bool[grid.Length][];
@@ -18,8 +19,10 @@ public class SolutionMakex1 {
          for (int i = 0; i < delx.Length; i++) {
             int newx = r + delx[i], newy = c + dely[i];
             if (valid (newx, newy) && grid[newx][newy] == reference) {
-               if (!visited[newx][newy] && dfs (newx, newy, r, c, visited)) {
-                  return true;
+               if (!visited[newx][newy]) {
+                  if (dfs (newx, newy, r, c, visited)) {
+                     return true;
+                  }
                } else if (!(newx == rp && newy == cp)) {
                   return true;
                }
