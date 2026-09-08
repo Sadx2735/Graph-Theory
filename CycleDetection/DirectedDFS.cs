@@ -1,13 +1,14 @@
-﻿namespace CycleDetection;
+﻿namespace CycleDetectionx4;
 // MakeEdges
-class Programx3 {
-   static void Mainx3 () {
+class Programx4 {
+   static void Mainx4 () {
       int n = 6;
       bool cond = false;
       GraphStructure Gs = new GraphStructure (n);
       Gs.AddNode (0, 1, cond);
       Gs.AddNode (1, 2, cond);
       Gs.AddNode (2, 3, cond);
+      Gs.AddNode (3, 0, cond);
       Gs.AddNode (0, 4, cond);
       Gs.AddNode (0, 5, cond);
       Gs.PrintAdjList ();
@@ -46,8 +47,7 @@ class GraphStructure {
             if (!vis[nbr]) {
                bool nbrval = DFS (nbr, n, vis);
                if (nbrval) return true;
-            }
-            else if (nbr != p) return true;
+            } else if (nbr != p) return true;
          }
          return false;
       }
@@ -55,22 +55,18 @@ class GraphStructure {
    }
 
    public bool HasCyclesDirected () {
-      int[] state = new int[N];
-
-      bool DFS (int n) {
-         state[n] = 1;
-         foreach (var nbr in Map[n]) {
-            if (state[nbr] == 1) return true;
-            if (state[nbr] == 0 && DFS (nbr)) return true;
+      bool[] visited = new bool[N];
+      bool[] cStack = new bool[N];
+      bool DFS (int n, bool[] visited, bool[] cStack) {
+         visited[n] = true; cStack[n] = true;
+         foreach (var item in Map[n]) {
+            if (!visited[item] && DFS (item, visited, cStack))
+               return true;
+            else if (visited[item] && cStack[item]) return true;
          }
-         state[n] = 2;
+         cStack[n] = false;
          return false;
       }
-
-      for (int i = 0; i < N; i++) {
-         if (state[i] == 0 && DFS (i)) return true;
-      }
-
-      return false;
+      return DFS (0, visited, cStack);
    }
 }
