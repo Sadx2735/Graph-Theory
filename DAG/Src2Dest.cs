@@ -1,4 +1,4 @@
-public class Solution {
+public class Solutionx12 {
    public IList<IList<int>> AllPathsSourceTarget (int[][] graph) {
       IList<IList<int>> FinalResults = new List<IList<int>> ();
       int N = graph.GetLength (0);

@@ -1,4 +1,4 @@
-public class Solution {
+public class Solutionx10 {
    public bool CanFinish (int numCourses, int[][] prerequisites) {
       int[] indegree = new int[numCourses];
       List<List<int>> adjMap = new List<List<int>> ();

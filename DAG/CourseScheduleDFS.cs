@@ -1,4 +1,4 @@
-class Solution {
+class Solutionx11 {
     public List<int> topoSort(int V, int[,] edges) {
         bool[] visited = new bool[V]; 
         List<List<int>> Map = new List<List<int>>(); 
