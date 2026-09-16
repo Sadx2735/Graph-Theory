@@ -1,6 +1,6 @@
 ﻿namespace DsuMst;
 class ProgramDsuMst {
-   private static void Main (string[] args) {
+   private static void MainMST (string[] args) {
       List<(int from, int to, int weight)> Edges = new ();
       DisjointSetMST dmst = new (4);
       Edges.Add ((0, 1, 10));

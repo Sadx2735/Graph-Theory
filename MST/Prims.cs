@@ -1,7 +1,7 @@
 ﻿namespace MSTree;
 
 class ProgramMST {
-   static void Main() {
+   static void MainPrims() {
       // Refer Dia2 in Media folder.
       List<List<(int, int)>> AdjList = new List<List<(int, int)>> ();
       int N = 4;
