@@ -3,20 +3,19 @@
 */
 
 // Construction of Graph.
-namespace DFSGRAPH;
-class Dummy {
-   static void RunMain () {
+namespace CycleDfs;
+class ProgramCycleDFS {
+   static void MainDFS () {
       int n = 7;
       GraphStructure Gs = new GraphStructure (n);
       Gs.AddNode (1, 0);
-      Gs.AddNode (1, 2);
-      Gs.AddNode (2, 3);
+      Gs.AddNode (2, 1);
+      Gs.AddNode (3, 2);
       Gs.AddNode (0, 4);
       Gs.AddNode (4, 3);
       Gs.AddNode (4, 5);
-      Gs.AddNode (3, 5);
       Gs.AddNode (5, 6);
-      Gs.DFS (1, new bool[n]);
+      Gs.DFS (0, -1, new int[n], new int[n]);
    }
 }
 // Graph Data Structure.
@@ -29,7 +28,7 @@ class GraphStructure {
          Map.Add (new List<int> ());
       }
    }
-   public void AddNode (int from, int to, bool BothDir = true) {
+   public void AddNode (int from, int to, bool BothDir = false) {
       Map[from].Add (to);
       if (BothDir) Map[to].Add (from);
    }
@@ -44,11 +43,21 @@ class GraphStructure {
       }
    }
    // DoDFS()
-   public void DFS (int node, bool[] visited) {
-      Console.WriteLine (node);
-      visited[node] = true;
-      foreach (var item in Map[node]) {
-         if (!visited[item]) DFS (item, visited);
+   public void DFS (int Node, int Parent, int[] visited, int[] parent) {
+      visited[Node] = 1;
+      parent[Node] = Parent;
+      foreach (var nbr in Map[Node]) {
+         if (visited[nbr] == 0) {
+            DFS (nbr, Node, visited, parent);
+         } else if (visited[nbr] == 1) {
+            int Cur = Node, Anc = nbr;
+            while (Cur != Anc) {
+               Console.Write ($"{Cur} ");
+               Cur = parent[Cur];
+            }
+            Console.Write ($"{Cur} ");
+         }
       }
+      visited[Node] = 2;
    }
 }
