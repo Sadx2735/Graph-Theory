@@ -19,7 +19,7 @@
          Time[Node] = T++;
          BackTime[Node] = Time[Node];
          
-         // For all the neighbours check if they are not visited if not visit
+         // For all the neighbors check if they are not visited if not visit
          // and track the minimum value of there exploration.
          foreach (var nbr in Map[Node]) {
             // Explore and get the minimum.
@@ -31,6 +31,8 @@
             // If more than one back edge are there we need to get the minimum of them also.
             else if (nbr != Parent && Time[nbr] != 0) {
                BackTime[Node] = Math.Min (BackTime[Node], Time[nbr]);
+               // We can also make the condition to be like :
+               // ( nbr != Parent ) and changing the inside thing to have BackTime[nbr]
             }
          }
          return (Time[Node], BackTime[Node]);
